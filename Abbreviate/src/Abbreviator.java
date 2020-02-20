@@ -14,44 +14,44 @@ public class Abbreviator {
     public String abbreviate(String string) {
         // ...
 
-        String[] words = string.split(" ");
+        String abvWord = "";
+        String[] words = string.split("[^\\w]+");
 
-        System.out.println(words[4]);
+        //System.out.println(words[4]);
 
-/*        for (int x = 0; x < words.length; x++){
+        for (int x = 0; x < words.length; x++) {
+            //for (String word : words) {
+                if (words[x].length() > 3) {
 
- //       System.out.println(words[x]);
-        }*/
+                    int WordLength = words[x].length();
+                    //System.out.println(WordLength);
+                    int MiddleValue = WordLength - 2;
+                    //System.out.println(MiddleValue);
 
-
-        for (String word: words) {
-            if (word.length() > 3) {
-
-                int WordLength = word.length();
-                int MiddleValue = WordLength - 2;
-
-                char firstLetter = word.charAt(0);
-                char lastLetter = word.charAt(word.length() - 1);
-
-                String abvWord = "" + firstLetter + MiddleValue + lastLetter;
-                System.out.println(abvWord);
-
-                return abvWord;
+                    char firstLetter = words[x].charAt(0);
+                    //System.out.println(firstLetter);
+                    char lastLetter = words[x].charAt(words[x].length() - 1);
+                    //System.out.println(lastLetter);
+//                    abvWord = "" + firstLetter + MiddleValue + lastLetter;
+                  //  System.out.println(abvWord);
+                abvWord = abvWord.concat(" " + firstLetter + MiddleValue + lastLetter);
+                }
+                else abvWord = abvWord.concat(" " + words[x]);
             }
-            else return word;
+        return abvWord;
+    }
+
+        public static void main (String[]args){
+
+            Abbreviator abv = new Abbreviator();
+
+            System.out.println(abv.abbreviate("This is the greatest thing the world has ever experienced since elephants, collosal fhjdshfjdshj"));
+            System.out.println(abv.abbreviate((" You\n" +
+                    " Youn3,\n" +
+                    " Youn3,n2d not\n" +
+                    " Youn3,n2d notw3, to\n" +
+                    " Youn3,n2d notw3, toc6e\n" +
+                    " Youn3,n2d notw3, toc6et2s\n" +
+                    " Youn3,n2d notw3, toc6et2sc7s")));
         }
-
-
-        return null;
-    }
-
-    public static void main(String[] args) {
-
-        Abbreviator abv = new Abbreviator();
-
-        abv.abbreviate("This is the greatest thing the world has ever experienced since elephants, collosal fhjdshfjdshj");
-
-    }
-
-
 }
